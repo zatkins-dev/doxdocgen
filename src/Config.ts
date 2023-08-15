@@ -47,6 +47,8 @@ class Generic {
     public boolReturnsTrueFalse: boolean = true;
     public briefTemplate: string = "@brief {text}";
     public paramTemplate: string = "@param {param} ";
+    public directionIn: string = "[in]";
+    public directionOut: string = "[out]";
     public returnTemplate: string = "@return {type} ";
     public linesToGet: number = 20;
     public authorName: string = "your name";
@@ -89,6 +91,8 @@ export class Config {
         values.Generic.boolReturnsTrueFalse = Generic.getConfiguration().get<boolean>("boolReturnsTrueFalse", values.Generic.boolReturnsTrueFalse);
         values.Generic.briefTemplate = Generic.getConfiguration().get<string>("briefTemplate", values.Generic.briefTemplate);
         values.Generic.paramTemplate = Generic.getConfiguration().get<string>("paramTemplate", values.Generic.paramTemplate);
+        values.Generic.directionIn = Generic.getConfiguration().get<string>("directionIn", values.Generic.directionIn);
+        values.Generic.directionOut = Generic.getConfiguration().get<string>("directionOut", values.Generic.directionOut);
         values.Generic.returnTemplate = Generic.getConfiguration().get<string>("returnTemplate", values.Generic.returnTemplate);
         values.Generic.linesToGet = Generic.getConfiguration().get<number>("linesToGet", values.Generic.linesToGet);
         values.Generic.authorTag = Generic.getConfiguration().get<string>("authorTag", values.Generic.authorTag);
@@ -108,6 +112,7 @@ export class Config {
     }
 
     public readonly paramTemplateReplace: string = "{param}";
+    public readonly directionTemplateReplace: string = "{direction}";
     public readonly typeTemplateReplace: string = "{type}";
     public readonly nameTemplateReplace: string = "{name}";
     public readonly authorTemplateReplace: string = "{author}";
