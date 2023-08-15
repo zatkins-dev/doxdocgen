@@ -267,7 +267,11 @@
     "url": "https://github.com/cschlosser/doxdocgen/labels/bug"
   },
   "scripts": {
-    "vscode:prepublish": "yarn compile",
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "test-compile": "tsc -p ./",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "test": "yarn compile && node ./out/test/runTests.js",
@@ -287,6 +291,7 @@
     "@types/node": "12.7.1",
     "@types/vscode": "^1.55.0",
     "decache": "^4.5.1",
+    "esbuild": "^0.19.2",
     "glob": "^7.1.6",
     "handlebars": "^4.7.3",
     "minimist": ">=1.2.6",

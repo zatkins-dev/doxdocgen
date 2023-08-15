@@ -93,6 +93,11 @@
     "lodash" "^4.17.5"
     "to-fast-properties" "^2.0.0"
 
+"@esbuild/linux-x64@0.19.2":
+  "integrity" "sha512-oxzHTEv6VPm3XXNaHPyUTTte+3wGv7qVQtqaZCrgstI16gCuhNOtBXLEBkBREP57YTd68P0VgDgG73jSD8bwXQ=="
+  "resolved" "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.19.2.tgz"
+  "version" "0.19.2"
+
 "@istanbuljs/nyc-config-typescript@0.1.3":
   "integrity" "sha512-EzRFg92bRSD1W/zeuNkeGwph0nkWf+pP2l/lYW4/5hav7RjKKBN5kV1Ix7Tvi0CMu3pC4Wi/U7rNisiJMR3ORg=="
   "resolved" "https://registry.npmjs.org/@istanbuljs/nyc-config-typescript/-/nyc-config-typescript-0.1.3.tgz"
@@ -721,6 +726,34 @@
   dependencies:
     "is-arrayish" "^0.2.1"
 
+"esbuild@^0.19.2":
+  "integrity" "sha512-G6hPax8UbFakEj3hWO0Vs52LQ8k3lnBhxZWomUJDxfz3rZTLqF5k/FCzuNdLx2RbpBiQQF9H9onlDDH1lZsnjg=="
+  "resolved" "https://registry.npmjs.org/esbuild/-/esbuild-0.19.2.tgz"
+  "version" "0.19.2"
+  optionalDependencies:
+    "@esbuild/android-arm" "0.19.2"
+    "@esbuild/android-arm64" "0.19.2"
+    "@esbuild/android-x64" "0.19.2"
+    "@esbuild/darwin-arm64" "0.19.2"
+    "@esbuild/darwin-x64" "0.19.2"
+    "@esbuild/freebsd-arm64" "0.19.2"
+    "@esbuild/freebsd-x64" "0.19.2"
+    "@esbuild/linux-arm" "0.19.2"
+    "@esbuild/linux-arm64" "0.19.2"
+    "@esbuild/linux-ia32" "0.19.2"
+    "@esbuild/linux-loong64" "0.19.2"
+    "@esbuild/linux-mips64el" "0.19.2"
+    "@esbuild/linux-ppc64" "0.19.2"
+    "@esbuild/linux-riscv64" "0.19.2"
+    "@esbuild/linux-s390x" "0.19.2"
+    "@esbuild/linux-x64" "0.19.2"
+    "@esbuild/netbsd-x64" "0.19.2"
+    "@esbuild/openbsd-x64" "0.19.2"
+    "@esbuild/sunos-x64" "0.19.2"
+    "@esbuild/win32-arm64" "0.19.2"
+    "@esbuild/win32-ia32" "0.19.2"
+    "@esbuild/win32-x64" "0.19.2"
+
 "escalade@^3.1.1":
   "integrity" "sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw=="
   "resolved" "https://registry.npmjs.org/escalade/-/escalade-3.1.1.tgz"
@@ -985,9 +1018,9 @@
   "version" "4.1.11"
 
 "graceful-fs@^4.1.2", "graceful-fs@^4.2.2":
-  "integrity" "sha512-nTnJ528pbqxYanhpDYsi4Rd8MAeaBA67+RZ10CM1m3bTAVFEDcd5AuA4a6W5YkGZ1iNXHzZz8T6TBKLeBuNriQ=="
-  "resolved" "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.6.tgz"
-  "version" "4.2.6"
+  "integrity" "sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ=="
+  "resolved" "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.11.tgz"
+  "version" "4.2.11"
 
 "growl@1.10.5":
   "integrity" "sha512-qBr4OuELkhPenW6goKVXiv47US3clb3/IbuWF9KNKEijAy9oeHxU9IgzjvJhHkUzhaj7rOUD7+YGWqUjLp5oSA=="
@@ -1157,9 +1190,9 @@
     "builtin-modules" "^1.0.0"
 
 "is-core-module@^2.2.0":
-  "integrity" "sha512-xSphU2KG9867tsYdLD4RWQ1VqdFl4HTO9Thf3I/3dLEfr0dbPTWKsuCKrgqMljg4nPE+Gq0VCnzT3gr0CyBmsw=="
-  "resolved" "https://registry.npmjs.org/is-core-module/-/is-core-module-2.3.0.tgz"
-  "version" "2.3.0"
+  "integrity" "sha512-Z7dk6Qo8pOCp3l4tsX2C5ZVas4V+UxwQodwZhLopL91TX8UyyHEXafPcyoeeWuLrwzHcr3igO78wNLwHJHsMCQ=="
+  "resolved" "https://registry.npmjs.org/is-core-module/-/is-core-module-2.13.0.tgz"
+  "version" "2.13.0"
   dependencies:
     "has" "^1.0.3"
 
@@ -2263,9 +2296,9 @@
     "urix" "^0.1.0"
 
 "source-map-support@*", "source-map-support@^0.5.17", "source-map-support@^0.5.19":
-  "integrity" "sha512-Wonm7zOCIJzBGQdB+thsPar0kYuCIzYvxZwlBa87yi/Mdjv7Tip2cyVbLj5o0cFPN4EVkuTwb3GDDyUx2DGnGw=="
-  "resolved" "https://registry.npmjs.org/source-map-support/-/source-map-support-0.5.19.tgz"
-  "version" "0.5.19"
+  "integrity" "sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w=="
+  "resolved" "https://registry.npmjs.org/source-map-support/-/source-map-support-0.5.21.tgz"
+  "version" "0.5.21"
   dependencies:
     "buffer-from" "^1.0.0"
     "source-map" "^0.6.0"

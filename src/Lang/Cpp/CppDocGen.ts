@@ -1,4 +1,4 @@
-import * as moment from "moment";
+import { Moment } from "moment";
 import { Position, Range, Selection, TextEditor } from "vscode";
 import { IDocGen } from "../../Common/IDocGen";
 import { Config } from "../../Config";
@@ -8,6 +8,7 @@ import { getIndentation } from "../../util";
 import { CppArgument } from "./CppArgument";
 import * as CppParser from "./CppParser";
 import { CppToken, CppTokenType } from "./CppToken";
+import moment = require("moment");
 
 export enum SpecialCase {
     none,
