@@ -131,6 +131,50 @@ suite("C++ - Configuration Tests", () => {
  */`);
     });
 
+    test("File comment alignment test", () => {
+        testSetup.cfg.File.fileOrder = [
+            "file",
+            "author",
+            "brief",
+            "version",
+            "date",
+            "copyright",
+        ];
+        testSetup.cfg.File.fileTemplate = "@file{align:1} {name}";
+        testSetup.cfg.Generic.authorTag = "@author{align:1} {author}";
+        testSetup.cfg.Generic.briefTemplate = "@brief{align:1} Thing";
+        testSetup.cfg.File.versionTag = "@version{align:1} 0.1";
+        testSetup.cfg.Generic.dateTemplate = "@date{align:1} date";
+        testSetup.cfg.File.copyrightTag = ["@copyright{align:1} Copyright(c)"];
+        const result = testSetup.SetLine("").GetResult();
+        assert.strictEqual(result, `/**
+ * @file      MockDocument.h
+ * @author    your name
+ * @brief     Thing
+ * @version   0.1
+ * @date      date
+ * @copyright Copyright(c)
+ */`);
+    });
+
+    test("Complex comment alignment test", () => {
+        testSetup.cfg.Generic.order = [
+            "brief",
+            "empty",
+            "param",
+        ];
+        testSetup.cfg.Generic.briefTemplate = "@brief{align:1} Thing";
+        testSetup.cfg.Generic.paramTemplate = "@param{direction}{align:2}  {param}{align:3}  description"
+        const result = testSetup.SetLine("void foo(int a, int b, int* output_c);").GetResult();
+        assert.strictEqual(result, `/**
+ * @brief Thing
+ * 
+ * @param[in]   a         description
+ * @param[in]   b         description
+ * @param[out]  output_c  description
+ */`);
+    });
+
     test("Lines to get test", () => {
         testSetup.cfg = new Config();
         testSetup.cfg.Generic.linesToGet = 2;
@@ -233,7 +277,7 @@ suite("C++ - Configuration Tests", () => {
         testSetup.cfg.Generic.returnTemplate = "<returns>\n</returns>";
         const result = testSetup.SetLine("    int foo(bool a);").GetResult();
         // tslint:disable:no-trailing-whitespace
-        assert.strictEqual(result, 
+        assert.strictEqual(result,
             result, `/// <summary>
     /// 
     /// </summary>
@@ -274,7 +318,7 @@ suite("C++ - Configuration Tests", () => {
         const result = testSetup.SetLine("void foo();").GetResult();
         const date = moment().format("YYYY-MM-DD");
         assert.strictEqual(result, `/**\n * @author your name\n * @date ${date}\n * @note you@domain.com\n` +
-        ` * @file MockDocument.h\n */`);
+            ` * @file MockDocument.h\n */`);
     });
 
     test("Env variable", () => {

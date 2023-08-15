@@ -1,9 +1,9 @@
 {
-  "name": "doxdocgen",
-  "displayName": "Doxygen Documentation Generator",
-  "description": "Let me generate Doxygen documentation from your source code for you.",
-  "version": "1.4.0",
-  "publisher": "cschlosser",
+  "name": "doxdocgen-with-direction",
+  "displayName": "Doxygen Documentation Generator - With Parameter Direction",
+  "description": "Fork of doxdocgen",
+  "version": "1.4.1",
+  "publisher": "zatkins-dev",
   "engines": {
     "vscode": "^1.55.0"
   },

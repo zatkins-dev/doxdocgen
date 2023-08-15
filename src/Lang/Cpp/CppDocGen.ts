@@ -384,6 +384,7 @@ export class CppDocGen implements IDocGen {
         lines = lines.map((line) => `${this.cfg.C.commentPrefix}${line}`);
         this.insertFirstLine(lines);
         this.insertLastLine(lines);
+        lines = templates.alignLines(lines);
 
         return lines.join("\n");
     }
@@ -445,6 +446,7 @@ export class CppDocGen implements IDocGen {
         lines = lines.map((line) => `${this.cfg.C.commentPrefix}${line}`);
         this.insertFirstLine(lines);
         this.insertLastLine(lines);
+        lines = templates.alignLines(lines);
 
         return lines.join(`\n${getIndentation(this.activeEditor)}`);
     }

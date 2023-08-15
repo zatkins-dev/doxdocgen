@@ -33,6 +33,71 @@ export function getIndentedTemplate(replace: string): string {
     return indentedString;
 }
 
+export function alignLines(replace: string[]): string[] {
+    if (replace.length === 0) { return [] }
+    const matchStr = /({align:\d+})/
+    const matchExtract = /{align:(\d+)}/
+
+    let alignIds = new Set<number>()
+    replace.forEach((line) => {
+        const snippets = line.split(matchStr);
+        snippets.filter((ss) => ss.match(matchExtract))
+            .map((ss) => parseInt(ss.match(matchExtract)[1], 0))
+            .forEach((id) => alignIds.add(id))
+    });
+
+    console.log(alignIds)
+
+    if (!alignIds.size) return replace;
+
+    let alignDepths = new Map()
+    alignIds.forEach(id => alignDepths[id] = 0);
+
+    let finished = false;
+    let attempts = 0;
+    while (!finished) {
+        let copy = { ...alignDepths };
+        replace.forEach((line) => {
+            let indent = 0;
+            const snippets = line.split(matchStr);
+            snippets.forEach(s => {
+                if (s.match(matchExtract)) {
+                    const id = parseInt(s.match(matchExtract)[1], 0)
+                    alignDepths[id] = Math.max(alignDepths[id], indent)
+                    indent = alignDepths[id]
+                } else {
+                    indent += s.length
+                }
+            });
+        });
+        finished = true;
+        alignDepths.forEach((k, v) => finished &&= copy[k] === v);
+        attempts += 1;
+        if (attempts > alignIds.size + 1) {
+            console.warn("Alignment failed in getAlignedTemplates");
+            return replace;
+        }
+    }
+
+    // align at markers
+    return replace.map((line) => {
+        let newString = "";
+
+        let indent = 0;
+        const snippets = line.split(matchStr);
+        snippets.forEach(s => {
+            if (s.match(matchStr)) {
+                const id = parseInt(s.match(matchExtract)[1], 0)
+                alignDepths[id] = Math.max(alignDepths[id], indent)
+                newString = newString.padEnd(alignDepths[id])
+            } else {
+                newString += s
+            }
+        });
+        return newString;
+    });
+}
+
 /**
  * Expand variable template in the string
  * @param original the original string
