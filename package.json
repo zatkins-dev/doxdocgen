@@ -258,7 +258,7 @@
     "Doxygen"
   ],
   "license": "SEE LICENSE IN LICENSE",
-  "main": "./out/extension",
+  "main": "./dist/main",
   "repository": {
     "type": "git",
     "url": "https://github.com/cschlosser/doxdocgen.git"
@@ -268,7 +268,7 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run esbuild-base -- --minify",
-    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=dist/main.js --external:vscode --format=cjs --platform=node",
     "esbuild": "npm run esbuild-base -- --sourcemap",
     "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
     "test-compile": "tsc -p ./",
