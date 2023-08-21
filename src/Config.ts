@@ -112,6 +112,7 @@ export class Config {
     }
 
     public readonly paramTemplateReplace: string = "{param}";
+    public readonly cursorTemplateReplace: string = "{cursor}";
     public readonly directionTemplateReplace: string = "{direction}";
     public readonly typeTemplateReplace: string = "{type}";
     public readonly nameTemplateReplace: string = "{name}";

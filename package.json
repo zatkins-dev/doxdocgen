@@ -2,7 +2,7 @@
   "name": "doxdocgen-with-direction",
   "displayName": "Doxygen Documentation Generator - With Parameter Direction",
   "description": "Fork of doxdocgen",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "publisher": "zatkins-dev",
   "engines": {
     "vscode": "^1.55.0"
