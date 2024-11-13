@@ -11,3 +11,7 @@ appveyor.yml
 coverconfig.json
 publish_coverage.sh
 .github/**
+.c8rc.json
+.coverage
+coverage
+tslint.json
