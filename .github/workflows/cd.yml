@@ -34,7 +34,7 @@ jobs:
         if: contains(github.ref, 'refs/tags/')
 
       - name: Upload vsix to GitHub release
-        uses: svenstaro/upload-release-action@v4
+        uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: doxdocgen-*.vsix
