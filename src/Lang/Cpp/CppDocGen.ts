@@ -113,7 +113,7 @@ export class CppDocGen implements IDocGen {
             const idx = this.getFirstDoxdocCommandIndex(comment, modifiedRangeToReplace.start.character)
             comment = comment.substring(0, idx) + "$1" + comment.substring(idx)
         }
-        let snip = new SnippetString(comment)
+        const snip = new SnippetString(comment)
         snip.appendTabstop(0)
         this.activeEditor.insertSnippet(snip, modifiedRangeToReplace);
     }
@@ -418,8 +418,8 @@ export class CppDocGen implements IDocGen {
                                 lines.push(...templates.getMultiTemplatedString(
                                     this.cfg.Generic.paramTemplate,
                                     [
-                                        { toReplace: this.cfg.paramTemplateReplace, with: param.name },
                                         { toReplace: this.cfg.directionTemplateReplace, with: param.direction },
+                                        { toReplace: this.cfg.paramTemplateReplace, with: param.name },
                                     ],
                                 ).split("\n"));
                             }

@@ -34,7 +34,7 @@ export class CppParseTree {
         return tree;
     }
 
-    public nodes: Array<CppToken | CppParseTree> = [];
+    public nodes: CppNode[] = [];
 
     /**
      * Compact empty branches. Example ((foo))(((bar))) will become (foo)(bar)
@@ -51,7 +51,7 @@ export class CppParseTree {
         // Compact current level of nodes to the maximum amount.
         while (newTree.nodes.some((n) => isNotCompact(n))) {
             newTree.nodes = newTree.nodes
-                .map((n) =>  n instanceof CppParseTree && isNotCompact(n) ? n.nodes[0] : n);
+                .map((n) => n instanceof CppParseTree && isNotCompact(n) ? n.nodes[0] : n);
         }
 
         // Compact all nested CppParseTrees.
@@ -122,3 +122,5 @@ export class CppParseTree {
         return code;
     }
 }
+
+export type CppNode = CppToken | CppParseTree;

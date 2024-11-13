@@ -11,8 +11,12 @@ This VS Code Extensions provides Doxygen Documentation generation on the fly by 
 
 - [Generate Doxygen Comments in VS Code](#generate-doxygen-comments-in-vs-code)
   - [Table of Contents](#table-of-contents)
+  - [Recommended Settings](#recommended-settings)
   - [Features](#features)
-    - [Alignment](#alignment)
+    - [Cursors and placeholders](#cursors-and-placeholders)
+    - [Automatic Parameter Direction](#automatic-parameter-direction)
+    - [Automatic Alignment](#automatic-alignment)
+    - [Indentation](#indentation)
     - [Attributes](#attributes)
     - [Con- and Destructors](#con--and-destructors)
     - [Extensive customization](#extensive-customization)
@@ -30,11 +34,139 @@ This VS Code Extensions provides Doxygen Documentation generation on the fly by 
   - [Known Issues](#known-issues)
   - [What's to come](#whats-to-come)
 
+## Recommended Settings
+
+Tl;dr: if you are using C or C++, these are the settings which I use and would recommend adding to your `settings.json`.
+
+```json
+  "doxdocgen.generic.order": [
+    "brief",
+    "empty",
+    "param",
+    "empty",
+    "return"
+  ],
+  "doxdocgen.generic.includeTypeAtReturn": false,
+  "doxdocgen.generic.briefTemplate": "@brief ${cursor}",
+  "doxdocgen.generic.paramTemplate": "@param{direction}{align:1}  {param}{align:2}  ${cursor}",
+  "doxdocgen.generic.returnTemplate": "@return ${cursor}",
+```
+
+This will create comments which look like:
+
+```cpp
+/**
+ * @brief  |
+ * 
+ * @param[in]  foo       |
+ * @param[in]  bar       |
+ * @param[out] baz       |
+ * @param[out] myString  |
+ * 
+ * @return  |
+ */
+int func(int foo, const int bar[], double *baz, char myString[]);
+```
+
+The `|` symbols in the above represent cursors which can be navigated between using Tab, making it simple to fill out documentation.
+
+If you want to understand more about the features at play, read on!
+
 ## Features
 
-### Alignment
+### Cursors and placeholders
 
-![Alignment](images/alignment.gif)
+This fork adds support for snippet-like cursors and placeholders.
+You can add cursors to any template by simply placing `${cursor}` where one is desired. 
+**Note that this template command is prefixed with a dollar-sign**.
+Additionally, you can add dropdown choice cursors using `${{cursor}|choice 1,choice 2|}`, where the cursor will allow you to choose between preset values.
+
+Example:
+
+```json
+"doxdocgen.generic.order": ["brief", "param"],
+"doxdocgen.generic.briefTemplate": "@brief ${cursor}",
+"doxdocgen.generic.paramTemplate": "@param {param} ${cursor}",
+```
+
+will turn into
+
+```cpp
+/**
+ * @brief |
+ * @param foo               |
+ * @param barIsAlsoAnOption |
+ */
+void bar(int foo, int barIsAlsoAnOption);
+```
+
+The `|` in the above represent VS Code cursors, which can be navigated between using Tab.
+You can specify as many cursors as you want and they can be navigated through sequentially.
+
+
+### Automatic Parameter Direction
+
+This fork adds support for automatically populating the parameter direction in C/C++ based on type qualifiers.
+You can add `{direction}` to `doxdocgen.generic.paramTemplate` to insert the automatically detected value.
+In general, non-constant pointers and arrays are assumed to be output variables, while everything else is considered input.
+
+#### Example:
+
+```json
+"doxdocgen.generic.order": ["brief", "param"],
+"doxdocgen.generic.paramTemplate": "@param{direction} {param} My param doc"
+```
+
+will turn into
+
+```cpp
+/**
+ * @brief
+ * @param[in] foo My param doc
+ * @param[in] bar My param doc
+ * @param[out] baz My param doc
+ * @param[out] str My param doc
+ */
+void func(int foo, const int bar[], double *baz, char str[]);
+```
+
+If you want to manually specify each direction, a good option is to use dropdown multi-cursors, like:
+
+```json
+"doxdocgen.generic.paramTemplate": "@param${{cursor}|in,out,inout|} {param}"
+```
+
+### Automatic Alignment
+
+In addition to fixed width alignment (see changelog), this fork adds the ability to dynamically align elements.
+This is perhaps the most useful addition for those who are particular about comment formatting.
+You can add `{align:<number>}`, where `<number>` is a positive integer, to any template strings.
+Then, the lines of the comment will have padding inserted such that all instances of a given alignment value are aligned, across *all* comment lines containing it.
+
+#### Example:
+
+```json
+"doxdocgen.generic.order": ["brief", "param"],
+"doxdocgen.generic.briefTemplate": "@brief{align:1} My brief"
+"doxdocgen.generic.paramTemplate": "@param{direction}{align:1} {param}{align:2} My Param doc"
+```
+
+will turn into
+
+```cpp
+/**
+ * @brief      My brief
+ * @param[in]  foo      My param doc
+ * @param[in]  bar      My param doc
+ * @param[out] baz      My param doc
+ * @param[out] myString My param doc
+ */
+void func(int foo, const int bar[], double *baz, char myString[]);
+```
+
+### Indentation
+
+![Indentation](images/alignment.gif)
 
 For how this works, see the [CHANGELOG.md](https://github.com/cschlosser/doxdocgen/blob/master/CHANGELOG.md#alignment)
 

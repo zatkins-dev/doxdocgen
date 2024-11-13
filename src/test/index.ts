@@ -3,13 +3,13 @@ import * as Mocha from "mocha";
 import * as path from "path";
 
 function setupNyc() {
-    const NYC = require("nyc");
-    // create an nyc instance, config here is the same as your package.json
-    const nyc = new NYC({
-    });
-    nyc.reset();
-    nyc.wrap();
-    return nyc;
+  const NYC = require("nyc");
+  // create an nyc instance, config here is the same as your package.json
+  const nyc = new NYC({
+  });
+  nyc.reset();
+  nyc.wrap();
+  return nyc;
 }
 
 export function run(): Promise<void> {
@@ -22,14 +22,9 @@ export function run(): Promise<void> {
   const testsRoot = path.resolve(__dirname, ".");
 
   return new Promise((c, e) => {
-    glob("**/**.test.js", { cwd: testsRoot }, (err, files) => {
-      if (err) {
-        return e(err);
-      }
-
+    glob.glob("**/**.test.js", { cwd: testsRoot }).then(files => {
       // Add files to the test suite
       files.forEach((f) => mocha.addFile(path.resolve(testsRoot, f)));
-
       try {
         // Run the mocha test
         mocha.run((failures) => {
@@ -45,6 +40,6 @@ export function run(): Promise<void> {
         nyc.writeCoverageFile();
         nyc.report();
       }
-    });
+    }).catch(err => e(err));
   });
 }

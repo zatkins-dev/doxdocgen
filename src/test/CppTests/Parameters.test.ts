@@ -10,6 +10,7 @@ import * as assert from "assert";
 // as well as import your extension to test it
 import * as vscode from "vscode";
 import TestSetup from "./TestSetup";
+import { Config } from "../../Config";
 
 // Defines a Mocha test suite to group tests of similar kind together
 suite("C++ - Parameters Tests", () => {

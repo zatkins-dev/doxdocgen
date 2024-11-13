@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.5.4]
+
+### Feature
+- Add automatic alignment
+- Add multi-cursor support
+
 ## [1.4.0]
 
 ### Feature

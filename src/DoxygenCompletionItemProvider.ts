@@ -8,7 +8,7 @@ export default class DoxygenCompletionItemProvider implements vscode.CompletionI
     /**
      * commands are a tuple of <command, snippet, documentation>
      */
-    public static readonly commands: Array<[string, string, string]> = [
+    public static readonly commands: [string, string, string][] = [
         /*Special commands */
         ["a", "${1:word}", "Display `<word>` in italics"],
         ["arg", "${1:item-description}", "Generate a simple, non-nested list of arguments"],

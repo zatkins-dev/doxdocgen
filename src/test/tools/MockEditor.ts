@@ -9,7 +9,7 @@ export default class MockEditor implements TextEditor {
     public selection: vscode.Selection;
     public selections: vscode.Selection[];
     public options: vscode.TextEditorOptions;
-    public viewColumn?: vscode.ViewColumn;
+    public viewColumn: vscode.ViewColumn;
     public editBuilder: MockTextEditorEdit;
     public readonly visibleRanges: Range[];
     public constructor(s: MockSelection, d: MockDocument) {

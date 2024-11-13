@@ -1,4 +1,6 @@
 import { getEnvVars } from "./util";
+import * as vscode from "vscode";
+import logger from "./Logger";
 
 /**
  * Represent a templated variable in string
@@ -38,7 +40,7 @@ export function alignLines(replace: string[]): string[] {
     const matchStr = /({align:\d+})/
     const matchExtract = /{align:(\d+)}/
 
-    let alignIds = new Set<number>()
+    const alignIds = new Set<number>()
     replace.forEach((line) => {
         const snippets = line.split(matchStr);
         snippets.filter((ss) => ss.match(matchExtract))
@@ -46,23 +48,26 @@ export function alignLines(replace: string[]): string[] {
             .forEach((id) => alignIds.add(id))
     });
 
-    console.log(alignIds)
-
     if (!alignIds.size) return replace;
 
-    let alignDepths = new Map()
-    alignIds.forEach(id => alignDepths[id] = 0);
+    logger.info("Identified alignment IDs: " + JSON.stringify(Array.from(alignIds)));
+
+    const alignDepths = new Map<number, number>();
+    alignIds.forEach((id: number) => alignDepths[id] = 0);
 
     let finished = false;
     let attempts = 0;
     while (!finished) {
-        let copy = { ...alignDepths };
+        let changed = false;
         replace.forEach((line) => {
-            let indent = 0;
             const snippets = line.split(matchStr);
+            let indent = 0;
             snippets.forEach(s => {
                 if (s.match(matchExtract)) {
                     const id = parseInt(s.match(matchExtract)[1], 0)
+                    if (alignDepths[id] < indent) {
+                        changed = true;
+                    }
                     alignDepths[id] = Math.max(alignDepths[id], indent)
                     indent = alignDepths[id]
                 } else {
@@ -70,25 +75,24 @@ export function alignLines(replace: string[]): string[] {
                 }
             });
         });
-        finished = true;
-        alignDepths.forEach((k, v) => finished &&= copy[k] === v);
+        finished = !changed;
         attempts += 1;
         if (attempts > alignIds.size + 1) {
-            console.warn("Alignment failed in getAlignedTemplates");
+            logger.warn("Alignment failed in getAlignedTemplates");
             return replace;
         }
     }
+
+    logger.info("Computed alignment depths: " + JSON.stringify(alignDepths));
 
     // align at markers
     return replace.map((line) => {
         let newString = "";
 
-        let indent = 0;
         const snippets = line.split(matchStr);
         snippets.forEach(s => {
             if (s.match(matchStr)) {
                 const id = parseInt(s.match(matchExtract)[1], 0)
-                alignDepths[id] = Math.max(alignDepths[id], indent)
                 newString = newString.padEnd(alignDepths[id])
             } else {
                 newString += s

@@ -165,14 +165,12 @@ suite("C++ - Configuration Tests", () => {
         ];
         testSetup.cfg.Generic.briefTemplate = "@brief{align:1} Thing";
         testSetup.cfg.Generic.paramTemplate = "@param{direction}{align:2}  {param}{align:3}  description"
-        const result = testSetup.SetLine("void foo(int a, int b, int* output_c);").GetResult();
-        assert.strictEqual(result, `/**
- * @brief Thing
- * 
- * @param[in]   a         description
- * @param[in]   b         description
- * @param[out]  output_c  description
- */`);
+        let result = testSetup.SetLine("void foo(int a, int b, int* output_c);").GetResult();
+        assert.strictEqual(result, "/**\n * @brief Thing\n * \n * @param[in]   a         description\n" +
+            " * @param[in]   b         description\n * @param[out]  output_c  description\n */");
+
+        result = testSetup.SetLine("void foo(int bb, int c[]);").GetResult();
+        assert.strictEqual(result, "/**\n * @brief Thing\n * \n * @param[in]   bb  description\n * @param[out]  c   description\n */");
     });
 
     test("Lines to get test", () => {
@@ -279,9 +277,9 @@ suite("C++ - Configuration Tests", () => {
         // tslint:disable:no-trailing-whitespace
         assert.strictEqual(result,
             result, `/// <summary>
-    /// 
+    ///
     /// </summary>
-    /// 
+    ///
     /// <param name="a">
     /// </param>
     /// <returns>

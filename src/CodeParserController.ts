@@ -13,6 +13,7 @@ import { Config } from "./Config";
 import GitConfig from "./GitConfig";
 import CppParser from "./Lang/Cpp/CppParser";
 import { inComment } from "./util";
+import logger from "./Logger";
 /**
  *
  * Checks if the event matches the specified guidelines and if a parser exists for this language
@@ -109,8 +110,7 @@ export default class CodeParserController {
                 parser = new CppParser(this.cfg);
                 break;
             default:
-                // tslint:disable-next-line:no-console
-                console.log("No comments can be generated for language: " + lang);
+                logger.info("No comments can be generated for language: " + lang);
                 return null;
         }
 

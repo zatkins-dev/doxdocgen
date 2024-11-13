@@ -4,8 +4,9 @@ import { IDocGen } from "../../Common/IDocGen";
 import { Config } from "../../Config";
 import { CppArgument } from "./CppArgument";
 import { CasingType, CommentType, CppDocGen, SpecialCase } from "./CppDocGen";
-import { CppParseTree } from "./CppParseTree";
+import { CppNode, CppParseTree } from "./CppParseTree";
 import { CppToken, CppTokenType } from "./CppToken";
+
 
 /**
  *
@@ -575,11 +576,11 @@ export default class CppParser implements ICodeParser {
         return args;
     }
 
-    private IsFuncPtr(nodes: Array<CppToken | CppParseTree>) {
+    private IsFuncPtr(nodes: CppNode[]) {
         return nodes.filter((n) => n instanceof CppParseTree).length === 2;
     }
 
-    private IsArrayPtr(nodes: Array<CppToken | CppParseTree>) {
+    private IsArrayPtr(nodes: CppNode[]) {
         if (nodes.filter((n) => n instanceof CppParseTree).length === 1) {
             const treeIdx = nodes.findIndex((n) => n instanceof CppParseTree);
             if (treeIdx !== -1) {
@@ -718,11 +719,15 @@ export default class CppParser implements ICodeParser {
         const symbols: CppToken[] = argument.type.nodes
             .filter((n) => n instanceof CppToken)
             .map((n) => n as CppToken)
-            .filter((n) => n.type === CppTokenType.Symbol || CppTokenType.Pointer || CppTokenType.Reference || CppTokenType.ArraySubscript);
+            .filter((n) =>
+                n.type === CppTokenType.Symbol ||
+                n.type === CppTokenType.Pointer ||
+                n.type === CppTokenType.Reference ||
+                n.type === CppTokenType.ArraySubscript);
 
-        const is_const: Boolean = symbols.find((s) => s.value === "const") !== undefined;
-        const is_ref: Boolean = symbols.find((s) => s.type === CppTokenType.Pointer || s.type === CppTokenType.Reference || s.type === CppTokenType.ArraySubscript) !== undefined;
-        argument.direction = !is_const && is_ref ? this.cfg.Generic.directionOut : this.cfg.Generic.directionIn;
+        const isConst: boolean = symbols.find((s) => s.value === "const") !== undefined;
+        const isRef: boolean = symbols.find((s) => s.type === CppTokenType.Pointer || s.type === CppTokenType.Reference || s.type === CppTokenType.ArraySubscript) !== undefined;
+        argument.direction = !isConst && isRef ? this.cfg.Generic.directionOut : this.cfg.Generic.directionIn;
 
         return argument;
     }
