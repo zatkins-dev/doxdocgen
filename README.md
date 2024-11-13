@@ -2,10 +2,9 @@
 
 This VS Code Extensions provides Doxygen Documentation generation on the fly by starting a Doxygen comment block and pressing enter.
 
-[![CI build status](https://img.shields.io/github/workflow/status/cschlosser/doxdocgen/CI/master)](https://github.com/cschlosser/doxdocgen/actions/workflows/ci.yml?query=branch%3Amaster)
-[![Release build status](https://img.shields.io/github/workflow/status/cschlosser/doxdocgen/CD?label=Release)](https://github.com/cschlosser/doxdocgen/actions/workflows/cd.yml?query=event%3Arelease++)
-[![codecov](https://codecov.io/gh/cschlosser/doxdocgen/branch/master/graph/badge.svg)](https://codecov.io/gh/cschlosser/doxdocgen)
-[![IRC chat](https://img.shields.io/badge/irc.oftc.net-%23doxdocgen-brightgreen)](https://webchat.oftc.net/?channels=doxdocgen)
+[![CI build status](https://img.shields.io/github/workflow/status/zatkins-dev/doxdocgen/CI/master)](https://github.com/zatkins-dev/doxdocgen/actions/workflows/ci.yml?query=branch%3Amaster)
+[![Release build status](https://img.shields.io/github/workflow/status/zatkins-dev/doxdocgen/CD?label=Release)](https://github.com/zatkins-dev/doxdocgen/actions/workflows/cd.yml?query=event%3Arelease++)
+[![codecov](https://codecov.io/gh/zatkins-dev/doxdocgen/branch/master/graph/badge.svg)](https://codecov.io/gh/zatkins-dev/doxdocgen)
 
 ## Table of Contents
 
@@ -58,10 +57,10 @@ This will create comments which look like:
 /**
  * @brief  |
  * 
- * @param[in]  foo       |
- * @param[in]  bar       |
- * @param[out] baz       |
- * @param[out] myString  |
+ * @param[in]   foo       |
+ * @param[in]   bar       |
+ * @param[out]  baz       |
+ * @param[out]  myString  |
  * 
  * @return  |
  */
@@ -168,7 +167,7 @@ void func(int foo, const int bar[], double *baz, char myString[]);
 
 ![Indentation](images/alignment.gif)
 
-For how this works, see the [CHANGELOG.md](https://github.com/cschlosser/doxdocgen/blob/master/CHANGELOG.md#alignment)
+For how this works, see the [CHANGELOG.md](https://github.com/zatkins-dev/doxdocgen/blob/master/CHANGELOG.md#alignment)
 
 ### Attributes
 
@@ -378,14 +377,16 @@ Each of them can be configured with its own custom text and you can decide if th
 
 ## Contributors
 
+[Zach Atkins](https://github.com/zatkins-dev)
+
 [Christoph Schlosser](https://github.com/cschlosser)
 
 [Rowan Goemans](https://github.com/rowanG077)
 
 ## Known Issues
 
-[See open bugs](https://github.com/cschlosser/doxdocgen/labels/bug)
+[See open bugs](https://github.com/zatkins-dev/doxdocgen/labels/bug)
 
 ## What's to come
 
-[See open features](https://github.com/cschlosser/doxdocgen/labels/enhancement)
+[See open features](https://github.com/zatkins-dev/doxdocgen/labels/enhancement)

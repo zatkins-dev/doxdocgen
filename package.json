@@ -2,7 +2,7 @@
   "name": "doxdocgen-with-direction",
   "displayName": "Doxygen Documentation Generator - With Parameter Direction",
   "description": "Fork of doxdocgen",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "publisher": "zatkins-dev",
   "engines": {
     "vscode": "^1.73.0"
@@ -12,18 +12,18 @@
   ],
   "badges": [
     {
-      "url": "https://img.shields.io/github/workflow/status/cschlosser/doxdocgen/CI/master",
-      "href": "https://github.com/cschlosser/doxdocgen/actions/workflows/ci.yml?query=branch%3Amaster+",
+      "url": "https://img.shields.io/github/workflow/status/zatkins-dev/doxdocgen/CI/master",
+      "href": "https://github.com/zatkins-dev/doxdocgen/actions/workflows/ci.yml?query=branch%3Amaster+",
       "description": "Continous integration"
     },
     {
-      "url": "https://img.shields.io/github/workflow/status/cschlosser/doxdocgen/CD?label=Release",
-      "href": "https://github.com/cschlosser/doxdocgen/actions/workflows/cd.yml?query=event%3Arelease++",
+      "url": "https://img.shields.io/github/workflow/status/zatkins-dev/doxdocgen/CD?label=Release",
+      "href": "https://github.com/zatkins-dev/doxdocgen/actions/workflows/cd.yml?query=event%3Arelease++",
       "description": "Release pipeline"
     },
     {
-      "url": "https://codecov.io/gh/cschlosser/doxdocgen/branch/master/graph/badge.svg",
-      "href": "https://codecov.io/gh/cschlosser/doxdocgen",
+      "url": "https://codecov.io/gh/zatkins-dev/doxdocgen/branch/master/graph/badge.svg",
+      "href": "https://codecov.io/gh/zatkins-dev/doxdocgen",
       "description": "Code coverage"
     }
   ],
@@ -261,10 +261,10 @@
   "main": "./dist/main",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cschlosser/doxdocgen.git"
+    "url": "https://github.com/zatkins-dev/doxdocgen.git"
   },
   "bugs": {
-    "url": "https://github.com/cschlosser/doxdocgen/labels/bug"
+    "url": "https://github.com/zatkins-dev/doxdocgen/labels/bug"
   },
   "scripts": {
     "vscode:prepublish": "npm run esbuild-base -- --minify",
