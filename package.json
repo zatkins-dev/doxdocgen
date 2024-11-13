@@ -12,17 +12,17 @@
   ],
   "badges": [
     {
-      "url": "https://img.shields.io/github/workflow/status/zatkins-dev/doxdocgen/CI/master",
-      "href": "https://github.com/zatkins-dev/doxdocgen/actions/workflows/ci.yml?query=branch%3Amaster+",
+      "url": "https://img.shields.io/github/actions/workflow/status/zatkins-dev/doxdocgen/ci.yml?branch=main",
+      "href": "https://github.com/zatkins-dev/doxdocgen/actions/workflows/ci.yml?query=branch%3Amain+",
       "description": "Continous integration"
     },
     {
-      "url": "https://img.shields.io/github/workflow/status/zatkins-dev/doxdocgen/CD?label=Release",
+      "url": "https://img.shields.io/github/actions/workflow/status/zatkins-dev/doxdocgen/cd.yml?label=Release",
       "href": "https://github.com/zatkins-dev/doxdocgen/actions/workflows/cd.yml?query=event%3Arelease++",
       "description": "Release pipeline"
     },
     {
-      "url": "https://codecov.io/gh/zatkins-dev/doxdocgen/branch/master/graph/badge.svg",
+      "url": "https://codecov.io/gh/zatkins-dev/doxdocgen/branch/main/graph/badge.svg",
       "href": "https://codecov.io/gh/zatkins-dev/doxdocgen",
       "description": "Code coverage"
     }

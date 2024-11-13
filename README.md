@@ -2,9 +2,9 @@
 
 This VS Code Extensions provides Doxygen Documentation generation on the fly by starting a Doxygen comment block and pressing enter.
 
-[![CI build status](https://img.shields.io/github/workflow/status/zatkins-dev/doxdocgen/CI/master)](https://github.com/zatkins-dev/doxdocgen/actions/workflows/ci.yml?query=branch%3Amaster)
-[![Release build status](https://img.shields.io/github/workflow/status/zatkins-dev/doxdocgen/CD?label=Release)](https://github.com/zatkins-dev/doxdocgen/actions/workflows/cd.yml?query=event%3Arelease++)
-[![codecov](https://codecov.io/gh/zatkins-dev/doxdocgen/branch/master/graph/badge.svg)](https://codecov.io/gh/zatkins-dev/doxdocgen)
+[![CI build status](https://img.shields.io/github/actions/workflow/status/zatkins-dev/doxdocgen/ci.yml?branch=main)](https://github.com/zatkins-dev/doxdocgen/actions/workflows/ci.yml?query=branch%3Amain)
+[![Release build status](https://img.shields.io/github/actions/workflow/status/zatkins-dev/doxdocgen/cd.yml?label=Release)](https://github.com/zatkins-dev/doxdocgen/actions/workflows/cd.yml?query=event%3Arelease++)
+[![codecov](https://codecov.io/gh/zatkins-dev/doxdocgen/branch/main/graph/badge.svg)](https://codecov.io/gh/zatkins-dev/doxdocgen)
 
 ## Table of Contents
 
@@ -167,7 +167,7 @@ void func(int foo, const int bar[], double *baz, char myString[]);
 
 ![Indentation](images/alignment.gif)
 
-For how this works, see the [CHANGELOG.md](https://github.com/zatkins-dev/doxdocgen/blob/master/CHANGELOG.md#alignment)
+For how this works, see the [CHANGELOG.md](https://github.com/zatkins-dev/doxdocgen/blob/main/CHANGELOG.md#alignment)
 
 ### Attributes
 

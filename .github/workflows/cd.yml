@@ -1,12 +1,6 @@
 name: Release
 
 on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
   release:
     types:
       - created
@@ -16,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '15.11.0'
+          node-version: '23.2.0'
       - run: yarn
 
       - name: Install VSCE
@@ -39,14 +33,8 @@ jobs:
           VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
         if: contains(github.ref, 'refs/tags/')
 
-      - name: Publish to Open VSX Registry
-        run: ovsx publish
-        env:
-          OVSX_PAT: ${{ secrets.OPEN_VSX_TOKEN }}
-        if: contains(github.ref, 'refs/tags/')
-
       - name: Upload vsix to GitHub release
-        uses: svenstaro/upload-release-action@v2
+        uses: svenstaro/upload-release-action@v4
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: doxdocgen-*.vsix
@@ -54,4 +42,3 @@ jobs:
           overwrite: true
           file_glob: true
         if: contains(github.ref, 'refs/tags/')
-
