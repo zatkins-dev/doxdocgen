@@ -19,7 +19,7 @@ jobs:
       - run: yarn
 
       - name: Install VSCE
-        run: yarn add vsce ovsx -D
+        run: yarn add @vscode/vsce -D
 
       - name: Update $PATH
         run: echo "$PWD/node_modules/.bin/" >> $GITHUB_PATH
@@ -28,7 +28,7 @@ jobs:
         run: vsce package && ls -alh
 
       - name: Publish to VS Code Marketplace
-        run: vsce publish -p ${VSCE_TOKEN}
+        run: vsce publish -p ${VSCE_TOKEN} --skip-duplicate
         env:
           VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
         if: contains(github.ref, 'refs/tags/')
